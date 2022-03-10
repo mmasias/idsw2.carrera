@@ -1,6 +1,6 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        Game game = new Game(4, 10);
+        Game game = new Game(2, 8);
         game.printGame();
         while (true) {
             game.advance();

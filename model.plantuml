@@ -1,5 +1,7 @@
 @startuml HorseRace
 class Horse
 class Track
+class Game
 
-Track <-- Horse
+Track "1" *-- "1" Horse
+Game "1" *-- "1..*" Track

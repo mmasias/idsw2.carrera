@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Game {
@@ -35,7 +36,8 @@ public class Game {
 
     public boolean gameEnds() {
         List<Track> winnerTrack = tracks.stream()
-                .filter(track -> track.horse.getPositionX() == track.getTrack().size() - 1).toList();
+                .filter(track -> track.horse.getPositionX() == track.getTrack().size() - 1)
+                .collect(Collectors.toList());
         winnerTrack.forEach(track -> track.horse.wins(tracks.indexOf(track) + 1));
 
         return winnerTrack.size() > 0;
