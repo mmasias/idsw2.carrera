@@ -1,0 +1,5 @@
+@startuml HorseRace
+class Horse
+class Track
+
+Track <-- Horse
