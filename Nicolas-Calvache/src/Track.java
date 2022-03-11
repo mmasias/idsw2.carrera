@@ -5,8 +5,10 @@ import java.util.stream.IntStream;
 public class Track {
     private List<Integer> track;
     private Horse horse;
+    private int trackNumber;
 
-    public Track(int trackLength) {
+    public Track(int trackLength, int trackNumber) {
+        this.trackNumber = trackNumber;
         this.track = new ArrayList<Integer>();
         this.horse = new Horse(0);
         this.fillTrack(trackLength);
@@ -20,7 +22,7 @@ public class Track {
         return this.track;
     }
 
-    public void advance() {
+    public void advanceTrack() {
         if (Math.random() <= 0.25) {
             this.horse.advance();
         }
@@ -28,5 +30,26 @@ public class Track {
 
     public Horse getHorse() {
         return this.horse;
+    }
+
+    public void printTrack() {
+        IntStream.range(0, this.track.size()).forEach(index -> {
+            if (this.horse.getPosition() >= index) {
+                System.out.print("[" + trackNumber + "]");
+            } else {
+                System.out.print("[" + 0 + "]");
+            }
+        });
+        
+        System.out.println("");
+    }
+
+    public boolean horseWins() {
+        if (this.horse.getPosition() == track.size() - 1) {
+            this.horse.wins(this.trackNumber);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
