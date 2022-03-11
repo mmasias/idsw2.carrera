@@ -5,7 +5,7 @@ public class App {
         while (true) {
             game.advance();
             game.printGame();
-            Thread.sleep(250);
+            Thread.sleep(300);
 
             if (game.gameEnds()) {
                 System.exit(0);
