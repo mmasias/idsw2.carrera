@@ -10,21 +10,34 @@ public class Game {
         IntStream.range(0, horsesQuantity).forEach(trackNumber -> tracks.add(new Track(trackLength, trackNumber + 1)));
     }
 
-    public void advance() {
+    public void begin() throws InterruptedException {
+        printGame();
+        while (true) {
+            advance();
+            printGame();
+            Thread.sleep(300);
+
+            if (gameEnds()) {
+                System.exit(0);
+            }
+        }
+    }
+
+    private void advance() {
         this.tracks.forEach(track -> {
             track.advanceTrack();
         });
     }
 
-    public void printGame() {
-        System.out.println("---".repeat(tracks.get(0).getTrack().size()));
+    private void printGame() {
+        System.out.println("---".repeat(tracks.get(0).getTrackLength()));
 
         this.tracks.forEach(track -> track.printTrack());
 
-        System.out.println("---".repeat(tracks.get(0).getTrack().size()) + "\n".repeat(10));
+        System.out.println("---".repeat(tracks.get(0).getTrackLength()) + "\n".repeat(10));
     }
 
-    public boolean gameEnds() {
+    private boolean gameEnds() {
         return tracks.stream().filter(track -> track.horseWins()).count() > 0;
     }
 }
