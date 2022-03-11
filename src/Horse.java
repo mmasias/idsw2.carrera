@@ -1,16 +1,16 @@
 public class Horse {
-    private int positionX;
+    private int position;
 
     public Horse(int postitionX) {
-        this.positionX = postitionX;
+        this.position = postitionX;
     }
 
     public void advance() {
-        this.positionX = positionX + 1;
+        this.position = position + 1;
     }
 
-    public int getPositionX() {
-        return this.positionX;
+    public int getPosition() {
+        return this.position;
     }
 
     public void wins(int horseNumber) {
