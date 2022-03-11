@@ -1,0 +1,168 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        
+        Horse h1 = new Horse(1);
+        Horse h2 = new Horse(2);
+        Track t = new Track();
+        Handler h = new Handler();
+        
+        h.Start(t);
+        
+        Scanner input = new Scanner(System.in);
+
+
+        do{
+            System.out.println("----------------------------------");
+            boolean i = h.Random();
+            
+            if(i){
+                h1.Go(t, h1);
+            }else{
+                h2.Go(t, h2);
+            }
+            
+            for(int x = 0; x < 10; x++){
+                System.out.print(t.line1[x]);
+            }
+            if(h1.advances == 1){
+                System.out.print(" -->           Horse 1"); 
+                h1.advances = 0;
+            }
+            System.out.println("");
+            for(int y = 0; y < 10; y++){
+                System.out.print(t.line2[y]);
+            }
+            if(h2.advances == 1){
+                System.out.print(" -->           Horse 2"); 
+                h2.advances = 0;
+            }
+            
+            if(h.CheckWinner(t)){
+                break;
+            }
+            
+        }while(input.nextLine() != null);
+        System.out.println("");
+        System.out.print("Se acabó, ganó el caballo " + h.findWinner(t));
+    }
+}
+
+class Handler{
+    
+    public Handler(){
+        
+        
+    }
+    
+    public void Start(Track t){
+        
+        for(int i = 0; i < 10; i++){
+            
+            t.line1[i] = "[0]";
+        }
+        
+        for(int i = 0; i < 10; i++){
+            
+            t.line2[i] = "[0]";
+        }
+    }
+    
+    public boolean Random(){
+        
+        double n = Math.random()*(100-1+1)+1;
+        if(n > 50){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    
+    public boolean CheckWinner(Track t){
+        
+        
+        if(t.line1[9].equals("[1]") || t.line2[9].equals("[1]")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    public String findWinner(Track t){
+        
+        
+        if(t.line1[9].equals("[1]")){
+            return "Caballo 1";
+        }else if(t.line2[9].equals("[1]")){
+            return "Caballo 2";
+        }else{
+            return null;
+        }
+    }
+}
+class Horse{
+    
+    public int counter;
+    public int number;
+    public int advances = 0;
+    
+    public Horse(int number){
+        this.counter = 0;
+        this.number = number;
+        this.advances = 0;
+    }
+    
+    public void Go(Track t, Horse h){
+        
+        if(number == 1){
+            t.HorseGoes(counter, h);
+            counter++;
+            advances = 1;
+        }else if(number == 2){
+            t.HorseGoes(counter, h);
+            counter++;
+            advances = 1;
+        }
+    }
+}
+
+class Track{
+    
+    String[] line1;
+    String[] line2;
+    
+    public Track(){
+        
+        this.line1 = new String[10];
+        this.line2 = new String[10];
+    }
+    /*
+    public string Print{
+        
+        StringBuffer sb = new StringBuffer();
+        
+        for(int x = 0; x < 10; x++){
+            sb.append(t.line1[x]);
+        }
+        if(h.advances == 1){
+            sb.append(" -->           Horse 1"); 
+        }
+        sb.nextLine("");
+        for(int y = 0; y < 10; y++){
+            sb.append(t.line2[y]);
+        }
+        if(h.advances == 2){
+            sb.append(" -->           Horse 2"); 
+        }
+    }*/
+    
+    public void HorseGoes(int counter, Horse h){
+        if(h.number == 1){
+            line1[counter] = "[1]";
+        }else{
+            line2[counter] = "[1]";
+        }
+        
+    }
+}
