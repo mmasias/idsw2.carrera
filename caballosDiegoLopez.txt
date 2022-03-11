@@ -1,0 +1,30 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        int caballo1 = 0;
+        int caballo2 = 0;
+    
+        while ((caballo1 < 10) && (caballo2 < 10)) {          //Condición trivial: siempre cierta
+        int num1 = (int)(Math.random()*5+1);
+        int num2 = (int)(Math.random()*5+1);
+        caballo1 = caballo1 + num1;
+        caballo2 = caballo2 + num2;
+        
+        System.out.println("Caballo 1 en la posición " + caballo1);
+        System.out.println("Caballo 2 en la posición " + caballo2);
+        System.out.println("--------------------------------------------------");    
+
+        }    
+        
+        if (caballo1 > caballo2){
+        System.out.println("Ganó el caballo1 ");        
+        }else{
+            System.out.println("Ganó el caballo2");    
+        }
+        System.out.println("--------------------------------------------------");    
+        System.out.println("");    
+        System.out.println("La carrera terminó");    
+        
+    }
+}
