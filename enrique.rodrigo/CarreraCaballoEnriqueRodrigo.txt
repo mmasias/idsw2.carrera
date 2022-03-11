@@ -1,0 +1,81 @@
+import java.util.*;
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        int t=0;
+        int c1=0,c2=0;
+        boolean ganador;
+        String[] posiciones1 = new String [6];
+        String[] posiciones2 = new String [6];
+        posiciones1[0]= "[1]";
+        posiciones1[1]= "[0]";
+        posiciones1[2]= "[0]";
+        posiciones1[3]= "[0]";
+        posiciones1[4]= "[0]";
+        posiciones1[5]= "[0]";
+        /////////
+        posiciones2[0]= "[1]";
+        posiciones2[1]= "[0]";
+        posiciones2[2]= "[0]";
+        posiciones2[3]= "[0]";
+        posiciones2[4]= "[0]";
+        posiciones2[5]= "[0]";
+        
+        //No consigo que termine la carrera
+        while(t<=8)
+        {
+            int min = 1;
+		    int max = 2;
+		    Random random = new Random();
+		    int value = random.nextInt(max + min) + min;
+            System.out.print("Caballo1: ");
+            for(int i=0; i<=5; i++)
+            {
+                System.out.print(posiciones1[i]);
+                System.out.print(" ");
+            }
+            System.out.println("");
+            System.out.print("Caballo2: ");
+            for(int j=0; j<=5; j++)
+            {
+                System.out.print(posiciones2[j]);
+                System.out.print(" ");
+            }
+            if(value==1)
+            {
+                posiciones1[c1]="[1]";
+                c1++;
+            }
+            else
+            {
+                posiciones2[c2]="[2]";
+                c2++;
+            }
+            if(c1>c2)
+            {
+                ganador=true;
+            }
+            else
+            {
+                ganador=false;
+            }
+            System.out.println("");
+            System.out.print("---------------------------------");
+
+            t++;
+            System.out .println("");
+        }
+        //No me sale sacar quien ha acabado primero
+        if(ganador=true)
+        {
+            System.out.println("Ha ganado el caballo1");
+        }
+        else
+        {
+            System.out.println("Ha ganado el caballo2");
+        }
+
+    }
+}
