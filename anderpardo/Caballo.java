@@ -1,3 +1,5 @@
+package anderpardo;
+
 import java.util.Arrays;
 
 public class Caballo {
@@ -20,6 +22,5 @@ public class Caballo {
     }   
     public static void Posicion2() {
         System.out.println(Arrays.toString(Caballo2));     
-    }   
-    
+    }      
 }

@@ -1,3 +1,5 @@
+package anderpardo;
+
 import java.util.Random;
 
 public class Movimiento{
