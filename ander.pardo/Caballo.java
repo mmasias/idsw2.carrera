@@ -1,25 +1,51 @@
-import java.util.Arrays;
+package anderpardo;
 
-public class Caballo {
-    static int Caballo1[] = new int[20]; 
-    static int Pos1 = 0;
-    static int Caballo2[] = new int[20];
-    static int Pos2 = 0;
+import java.util.ArrayList;
 
-    public static void AvanceCaballo1(){
-        Caballo1[Pos1] = 1;//Dorsal
-        Pos1 = Pos1+ 1;//Avance
-    }
-    public static void AvanceCaballo2(){
-        Caballo2[Pos2] = 2;//Dorsal
-        Pos2 = Pos2+ 1;//Avance
-    }
+public class Caballo<T> extends ArrayList<T> {
+    
+    int posicion;
+	T DorsalCaballo;
+	T ZonaLibre;
+	static int Casillas;
+	static int Caballos;
+	
+	public Caballo(int HuecosPista, T DorsalCaballo, T HuecoAvance) {
+		this.posicion = 0;
+		this.DorsalCaballo = DorsalCaballo;
+		this.ZonaLibre = HuecoAvance;
+		this.InvocarPista(HuecosPista);
+	}
 
-    public static void Posicion1() {
-        System.out.println(Arrays.toString(Caballo1));   
-    }   
-    public static void Posicion2() {
-        System.out.println(Arrays.toString(Caballo2));     
-    }   
+    public Caballo(int numCasillas, int numeroCaballos) {
+		Movimiento terreno = new Movimiento(numCasillas, numeroCaballos);
+	}
+	
+	public void InvocarPista(int LongitudPista) {
+		for (int i = 0; i < LongitudPista; i++) add(ZonaLibre);
+	}
+
+	public void avanzar() {
+		this.set(posicion,DorsalCaballo);
+		GestionAvance();
+	}
+	
+	public boolean AlcanzarMeta() {
+		if (posicion == size()) return true;
+		else return false;
+	}
+	
+	public String MensajeVictoria() {
+		return "HA GANADO EL CABALLO Nº" + DorsalCaballo;
+	}
+	
+	public void GestionAvance() {
+		posicion += 1;
+	}
+	
+    public static void Victoria() {
+		System.out.println(Movimiento.ImprimirTerreno());
+		System.out.println(Movimiento.CaballoVencedor());
+	}
     
 }
