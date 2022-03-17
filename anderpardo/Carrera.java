@@ -1,20 +1,23 @@
 package anderpardo;
 
+import java.util.Scanner;
+
 public class Carrera {
-    public static void main(String[]args){
+	public static void main(String[] args) {
 
-            System.out.println("==CARRERA DE CABALLOS===");
-            do{
-                Movimiento.GestionAvance();
-                Caballo.Posicion1();
-                Caballo.Posicion2();
-                System.out.println("-------------------------------------------------------------");
-                System.out.println("-------------------------------------------------------------");
+        System.out.println("==Elige tu configuracion==");
+        System.out.println("Introduce el numero de caballos participantes");
+        Scanner sc = new Scanner(System.in);
+        int Caballos = sc.nextInt();
+        System.out.println("Introduce la longitud de la pista");
+        Scanner sc2 = new Scanner(System.in);
+        int LongitudTerreno = sc2.nextInt();
 
-            } while (Caballo.Caballo1[Caballo.Caballo1.length-1] == 0 && Caballo.Caballo2[Caballo.Caballo2.length-1] == 0);
-            
-        System.out.println("FINAL DE LA CARRERA");
-        Movimiento.Victoria();
-        
-    }
+        System.out.println("==CARRERA DE CABALLOS===");
+		Caballo caballo = new Caballo(LongitudTerreno,Caballos);
+        do {
+			System.out.println(Movimiento.ImprimirTerreno());
+		} while (!Movimiento.ControlTurnos());
+        Caballo.Victoria();
+	}
 }
